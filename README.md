@@ -5,9 +5,13 @@
 
 A library, written in Gleam, to help create and read (contextual) objects of varying structures and types
 
+## Installing
 ```sh
-gleam add cx@1
+gleam add cx
 ```
+
+## Usage
+
 ```gleam
 import cx
 
