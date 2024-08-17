@@ -1,12 +1,12 @@
 name = "cx"
-version = "1.0.0"
+version = "1.0.2"
 
 # Fill out these fields if you intend to generate HTML documentation or publish
 # your project to the Hex package manager.
 #
-description = "A library, written in Gleam, to help create and read (contextual) objects of varying structures and types"
+description = "A library, written in Gleam, to help create data structures containing different data types and levels of nesting."
 licences = ["MIT"]
-# repository = { type = "github", user = "", repo = "" }
+repository = { type = "github", user = "jasonprogrammer", repo = "cx" }
 # links = [{ title = "Website", href = "" }]
 #
 # For a full reference of all the available options, you can have a look at
