@@ -39,7 +39,8 @@ data = {
 }
 ```
 
-Can we do this in Gleam? We can using [records](https://tour.gleam.run/data-types/records/).
+Can we do this in Gleam? Yes, we can, with
+[records](https://tour.gleam.run/data-types/records/).
 Records can also help us know the type of each object stored in the data
 structure, which is significant because runtime reflection is not available in
 Gleam.
