@@ -6,7 +6,7 @@
 A library, written in Gleam, to help create data structures containing
 different data types and levels of nesting.
 
-Note: This library is still being written!
+**Note**: This library is still being written!
 
 ## Background
 
