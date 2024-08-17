@@ -3,7 +3,44 @@
 [![Package Version](https://img.shields.io/hexpm/v/cx)](https://hex.pm/packages/cx)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/cx/)
 
-A library, written in Gleam, to help create and read (contextual) objects of varying structures and types
+A library, written in Gleam, to help create data structures containing
+different data types and levels of nesting.
+
+## Background
+
+Gleam is statically typed, and has certain restrictions for certain data types.
+For example, [Dict](https://hexdocs.pm/gleam_stdlib/gleam/dict.html) in Gleam
+has this restriction on the keys and values:
+
+```
+...all the keys must be of the same type and all the values must be of the same type.
+```
+
+[Lists](https://hexdocs.pm/gleam_stdlib/gleam/list.html) have a similar restriction:
+
+```
+All elements of a list must be the same type
+```
+
+What if we want to have more complicated, nested data structures as well? For
+example, here is a native Python data structure:
+
+```python
+data = {
+    "settings": {
+        "theme": "dark",
+        "themes: ["light", "dark"]
+    }
+    "people": [
+        {"Nicknames": ["Jane", "Jill"]},
+    ]
+}
+```
+
+We can create more complex data structures like this in Gleam using
+[records](https://tour.gleam.run/data-types/records/). The record variants
+can help us know the type of each object stored in the data structure. This is
+significant because runtime reflection is not available in Gleam.
 
 ## Installing
 ```sh
