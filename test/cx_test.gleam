@@ -6,8 +6,32 @@ pub fn main() {
   gleeunit.main()
 }
 
-// gleeunit test functions end in `_test`
-pub fn context_test() {
+pub fn get_string_test() {
+  let first_name = "Jane"
+  let key = "first_name"
+
+  let context =
+    cx.dict()
+    |> cx.add_string(key, first_name)
+  cx.get_string(context, key)
+  |> should.equal(Ok(first_name))
+}
+
+pub fn get_string_nested_test() {
+  let first_name = "Jane"
+
+  let context =
+    cx.dict()
+    |> cx.add(
+      "person",
+      cx.dict()
+        |> cx.add_string("first_name", first_name),
+    )
+  cx.get_string(context, "person.first_name")
+  |> should.equal(Ok(first_name))
+}
+
+pub fn get_strings_test() {
   let themes = ["light", "dark"]
 
   let context =
