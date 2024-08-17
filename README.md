@@ -9,7 +9,7 @@ different data types and levels of nesting.
 ## Background
 
 Gleam is statically typed, and has certain restrictions for certain data types.
-For example, [Dict](https://hexdocs.pm/gleam_stdlib/gleam/dict.html) in Gleam
+For example, a [Dict](https://hexdocs.pm/gleam_stdlib/gleam/dict.html) in Gleam
 has this restriction on the keys and values:
 
 ```
@@ -22,8 +22,8 @@ has this restriction on the keys and values:
 All elements of a list must be the same type
 ```
 
-What if we want to have more complicated, nested data structures as well? For
-example, here is a native Python data structure:
+What if we want to represent more complicated, nested data structures as well?
+For example, here is a native data structure in Python:
 
 ```python
 data = {
@@ -37,10 +37,10 @@ data = {
 }
 ```
 
-We can create more complex data structures like this in Gleam using
-[records](https://tour.gleam.run/data-types/records/). The record variants
-can help us know the type of each object stored in the data structure. This is
-significant because runtime reflection is not available in Gleam.
+Can we do this in Gleam? We can using [records](https://tour.gleam.run/data-types/records/)
+Records can also help us know the type of each object stored in the data
+structure, which is significant because runtime reflection is not available in
+Gleam.
 
 ## Installing
 ```sh
