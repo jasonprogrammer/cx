@@ -6,6 +6,8 @@
 A library, written in Gleam, to help create data structures containing
 different data types and levels of nesting.
 
+Note: This library is still being written!
+
 ## Background
 
 Gleam is statically typed, and has certain restrictions for certain data types.
