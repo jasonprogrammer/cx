@@ -3,8 +3,8 @@
 [![Package Version](https://img.shields.io/hexpm/v/cx)](https://hex.pm/packages/cx)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/cx/)
 
-A library, written in Gleam, to help create data structures containing
-different data types and levels of nesting.
+A library, written in [Gleam](https://gleam.run/), to help create data
+structures containing different data types and levels of nesting.
 
 **Note**: This library is still being written!
 
