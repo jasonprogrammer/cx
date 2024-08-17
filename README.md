@@ -45,6 +45,10 @@ Records can also help us know the type of each object stored in the data
 structure, which is significant because runtime reflection is not available in
 Gleam.
 
+This library was written to be used with an HTML templating engine, where pieces
+the data structure is used to replace variables (e.g. `@person.name`)in the
+HTML.
+
 ## Installing
 ```sh
 gleam add cx
