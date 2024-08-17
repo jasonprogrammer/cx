@@ -16,7 +16,21 @@ gleam add cx
 import cx
 
 pub fn main() {
-  // TODO: An example of the project in use
+  let context =
+    cx.dict()
+    |> cx.add(
+      "settings",
+      cx.dict()
+        |> cx.add_string("theme", "dark")
+        |> cx.add_strings("themes", ["light", "dark"]),
+    )
+    |> cx.add_list("people", [
+      cx.add_strings(cx.dict(), "Nicknames", ["Jane", "Jill"]),
+    ])
+
+
+    // Result: Ok(["light", "dark"])
+    cx.get_strings(context, "settings.themes")
 }
 ```
 
