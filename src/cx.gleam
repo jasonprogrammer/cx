@@ -1,7 +1,7 @@
 //// The "Context" data type exists to help create and read different types of
 //// data structures.
 ////
-//// For example, to store key and value:
+//// For example, to store a key and value:
 ////
 //// ```gleam
 //// let context = cx.dict()
@@ -56,8 +56,7 @@ pub type ContextError {
   UnexpectedContextType(key: String)
 }
 
-/// Create a data structure to store key-value pairs (the key will always be a
-/// string).
+/// Create a data structure to store key-value pairs, where the key is a String.
 pub fn dict() -> Context {
   CDict(dict.new())
 }
@@ -102,7 +101,7 @@ pub fn get(context: Context, key: String) -> Result(Context, ContextError) {
   }
 }
 
-/// Returns a list of values (of varying types) using the "final" part of the
+/// Returns a list of values, of varying types, using the "final" part of the
 /// key under which the string values are stored. For example, if the key is:
 /// "settings.themes", then the "final" key would be "themes".
 fn get_list_final(
@@ -125,7 +124,7 @@ fn get_list_final(
   }
 }
 
-/// Returns a list of values (of varying types) stored under a string key in
+/// Returns a list of values, of varying types, stored under a string key in
 /// the "context" (a data structure).
 pub fn get_list(
   context: Context,
@@ -158,7 +157,7 @@ fn get_strings_final(
             CString(s) -> Ok(s)
             _ -> Error(UnexpectedContextType(key))
           }
-        })
+        }),
       )
     }
     Error(_) -> Error(ValueNotFound(key))
@@ -208,10 +207,7 @@ fn get_string_final(
 
 /// Get a string value, stored under a string key, from the "context" (a
 /// data structure).
-pub fn get_string(
-  context: Context,
-  key: String,
-) -> Result(String, ContextError) {
+pub fn get_string(context: Context, key: String) -> Result(String, ContextError) {
   case string.split(key, on: ".") {
     [key1] -> get_string_final(context, key1)
     [key1, key2, ..] -> {
@@ -225,7 +221,7 @@ pub fn get_string(
 }
 
 /// Store a list of strings, under a string key, in the "context" (a data
-// structure).
+/// structure).
 pub fn add_strings(
   context: Context,
   key: String,
