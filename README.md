@@ -46,7 +46,7 @@ structure, which is significant because runtime reflection is not available in
 Gleam.
 
 This library was written to be used with an HTML templating engine, where pieces
-the data structure is used to replace variables (e.g. `@person.name`)in the
+of the data structure are used to replace variables (e.g. `@person.name`)in the
 HTML.
 
 ## Installing
