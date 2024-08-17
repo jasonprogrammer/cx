@@ -27,7 +27,7 @@ All elements of a list must be the same type
 What if we want to represent more complicated, nested data structures as well?
 For example, here is a native data structure in Python:
 
-```python
+```python3
 data = {
     "settings": {
         "theme": "dark",
@@ -39,7 +39,7 @@ data = {
 }
 ```
 
-Can we do this in Gleam? We can using [records](https://tour.gleam.run/data-types/records/)
+Can we do this in Gleam? We can using [records](https://tour.gleam.run/data-types/records/).
 Records can also help us know the type of each object stored in the data
 structure, which is significant because runtime reflection is not available in
 Gleam.
