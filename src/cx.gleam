@@ -41,6 +41,7 @@ import gleam/string
 /// A recursive type for creating and reading nested objects (lists and
 /// dictionaries) that contain different combinations of types.
 pub type Context {
+  CBool(value: Bool)
   CString(value: String)
   CInt(value: Int)
   CFloat(value: Float)
@@ -84,6 +85,15 @@ pub fn add_float(context: Context, key: String, value: Float) -> Context {
 pub fn add_string(context: Context, key: String, value: String) -> Context {
   case context {
     CDict(d) -> CDict(dict.insert(d, key, CString(value)))
+    _ -> context
+  }
+}
+
+/// Add a boolean value, stored under a certain key, to the "context" (a data
+/// structure).
+pub fn add_bool(context: Context, key: String, value: Bool) -> Context {
+  case context {
+    CDict(d) -> CDict(dict.insert(d, key, CBool(value)))
     _ -> context
   }
 }
@@ -174,6 +184,47 @@ pub fn get_strings(
     [key1, key2, ..] -> {
       case get(context, key1) {
         Ok(dict1) -> get_strings(dict1, key2)
+        Error(_) -> Error(ValueNotFound(key1))
+      }
+    }
+    [] -> Error(ValueNotFound(key))
+  }
+}
+
+/// Return a boolean using the "final" part of the key under which the string
+/// values are stored. For example, if the key is: "settings.is_dark_theme",
+/// then the "final" key would be "is_dark_theme".
+fn get_bool_final(
+  context: Context,
+  key: String,
+) -> Result(Bool, ContextError) {
+  case context {
+    CDict(d) -> {
+      case dict.get(d, key) {
+        Ok(value) -> {
+          case value {
+            CBool(b) -> Ok(b)
+            CInt(i) -> Ok(i != 0)
+            CFloat(f) -> Ok(f != 0.0)
+            CString(s) -> Ok(s != "")
+            _ -> Error(UnexpectedContextType(key))
+          }
+        }
+        _ -> Error(KeyNotFound(key))
+      }
+    }
+    _ -> Error(UnexpectedContextType(key))
+  }
+}
+
+/// Get a boolean value, stored under a string key, from the "context" (a
+/// data structure).
+pub fn get_bool(context: Context, key: String) -> Result(Bool, ContextError) {
+  case string.split(key, on: ".") {
+    [key1] -> get_bool_final(context, key1)
+    [key1, key2, ..] -> {
+      case get(context, key1) {
+        Ok(dict1) -> get_bool(dict1, key2)
         Error(_) -> Error(ValueNotFound(key1))
       }
     }

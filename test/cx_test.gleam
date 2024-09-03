@@ -49,3 +49,35 @@ pub fn get_strings_test() {
   cx.get_strings(context, "settings.themes")
   |> should.equal(Ok(themes))
 }
+
+pub fn get_bool_test() {
+  let context =
+    cx.dict()
+    |> cx.add_bool("is_active", True)
+    |> cx.add_string("non_empty", "abc")
+    |> cx.add_string("empty", "")
+    |> cx.add_int("non_zero_int", 1)
+    |> cx.add_int("zero_int", 0)
+    |> cx.add_float("non_zero_float", 1.0)
+    |> cx.add_float("zero_float", 0.0)
+  cx.get_bool(context, "is_active")
+  |> should.equal(Ok(True))
+
+  cx.get_bool(context, "non_empty")
+  |> should.equal(Ok(True))
+
+  cx.get_bool(context, "empty")
+  |> should.equal(Ok(False))
+
+  cx.get_bool(context, "non_zero_int")
+  |> should.equal(Ok(True))
+
+  cx.get_bool(context, "zero_int")
+  |> should.equal(Ok(False))
+
+  cx.get_bool(context, "non_zero_float")
+  |> should.equal(Ok(True))
+
+  cx.get_bool(context, "zero_float")
+  |> should.equal(Ok(False))
+}
